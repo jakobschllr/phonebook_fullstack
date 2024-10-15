@@ -1,3 +1,4 @@
+// this file does the communication with the backend
 import axios from 'axios'
 
 const baseUrl = '/api/persons'

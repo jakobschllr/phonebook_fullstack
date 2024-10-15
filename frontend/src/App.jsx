@@ -78,7 +78,26 @@ const App = () => {
           setSuccessNotification(`Added ${newName} to the Phonebook`)
         })
         .catch(error => {
-          setFailureNotification(`${newName} was already deleted from the server`)
+          console.log(error.response.data.error)
+          if (newName.length < 3) {
+            setFailureNotification("Name has to have atleast three characters.")
+          } else if (newNumber.length < 6) {
+            setFailureNotification("Number has to have atleast six characters.")
+          } else if (true) {
+            let isNumber = false;
+              for (let i = 0; i < newNumber.length; i++) {
+                const currentCharHex = newNumber[i].toString(16)                
+                if (currentCharHex >= 0x30 & currentCharHex <= 0x39) {
+                  isNumber = True;
+                }
+              }
+              if (!isNumber) {
+                setFailureNotification("Number has to consist of Integer.")
+              }
+          } else {
+            setFailureNotification(`${newName} was already deleted from the server`)
+          }
+          
           hook()
         })
     }
